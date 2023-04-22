@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>智能式现代家居</title>
+		<style type="text/css">
+			@import url('https://fonts.font.im/css?family=Quicksand');
+			@import url('https://fonts.font.im/css?family=Playfair+Display');
+			@import url('https://fonts.font.im/css?family=Anton|Playfair+Display');
+
+			/* 引用外部文字 */
+
+			* {
+				margin: 0;
+				/* padding: 0;             设置页面边距 */
+			}
+
+			:root {
+				font-size: 15px;
+			}
+
+			body {
+				overflow-x: hidden;
+				width: 100vw;
+				height: 1200vh;
+				display: flex;
+				/* 用flex布局设置页面 */
+				justify-content: center;
+				position: relative;
+				margin: 0;
+				min-height: 100vh;
+				background-color: #4edfff;
+				background-image:
+					radial-gradient(closest-side, rgba(109, 28, 45, 0.0), rgba(0, 217, 217, 0.0)),
+					radial-gradient(closest-side, rgba(85, 255, 127, 1.0), rgba(63, 182, 184, 0.0)),
+					radial-gradient(closest-side, rgba(48, 189, 126, 1.0), rgba(19, 181, 195, 0.0)),
+					radial-gradient(closest-side, rgba(61, 189, 189, 1.0), rgba(65, 190, 180, 0.0)),
+					radial-gradient(closest-side, rgba(13, 185, 174, 1.0), rgba(52, 238, 241, 0.0));
+				background-size:
+					130vmax 130vmax,
+					80vmax 80vmax,
+					90vmax 90vmax,
+					110vmax 110vmax,
+					90vmax 90vmax;
+
+
+
+				/* 设置多种色彩与尺寸用animation动画使其动态铺满背景 */
+
+
+
+				background-position:
+					-80vmax -80vmax,
+					60vmax -30vmax,
+					10vmax 10vmax,
+					-30vmax -10vmax,
+					50vmax 50vmax;
+				background-repeat: no-repeat;
+				animation: 10s movement linear infinite;
+			}
+
+			@keyframes movement {
+
+				0%,
+				100% {
+					background-size:
+						/* 设置运动范围 */
+						130vmax 130vmax,
+						80vmax 80vmax,
+						90vmax 90vmax,
+						110vmax 110vmax,
+						90vmax 90vmax;
+					background-position:
+						-80vmax -80vmax,
+						60vmax -30vmax,
+						10vmax 10vmax,
+						-30vmax -10vmax,
+						50vmax 50vmax;
+				}
+
+				25% {
+					background-size:
+						100vmax 100vmax,
+						90vmax 90vmax,
+						100vmax 100vmax,
+						90vmax 90vmax,
+						60vmax 60vmax;
+					background-position:
+						-60vmax -90vmax,
+						50vmax -40vmax,
+						0vmax -20vmax,
+						-40vmax -20vmax,
+						40vmax 60vmax;
+				}
+
+				50% {
+					background-size:
+						80vmax 80vmax,
+						110vmax 110vmax,
+						80vmax 80vmax,
+						60vmax 60vmax,
+						80vmax 80vmax;
+					background-position:
+						-50vmax -70vmax,
+						40vmax -30vmax,
+						10vmax 0vmax,
+						20vmax 10vmax,
+						30vmax 70vmax;
+				}
+
+				75% {
+					background-size:
+						90vmax 90vmax,
+						90vmax 90vmax,
+						100vmax 100vmax,
+						90vmax 90vmax,
+						70vmax 70vmax;
+					background-position:
+						-50vmax -40vmax,
+						50vmax -30vmax,
+						20vmax 0vmax,
+						-10vmax 10vmax,
+						40vmax 60vmax;
+				}
+			}
+
+			#auv ul {
+				/* 设置文字与排版居中 */
+				left: 30vw;
+				position: relative;
+				display: flex;
+				justify-content: center;
+				padding: 2vw;
+				list-style: none;
+			}
+
+
+
+			ul li a {
+				/* 设置列表使其平铺替换为引入图标 */
+				color: #fff;
+				position: relative;
+				padding: 30px;
+				font-size: 4vw;
+			}
+
+			ul li a ion-icon:hover {
+				color: oldlace;
+				filter: drop-shadow(0 0 5px);
+				font-size: 6vw;
+				transition: 0.5s;
+				transform: translateY(-10px);
+			}
+
+			ul li a ion-icon {
+				/* 设置图标变化时间 */
+				transition: 0.5s;
+			}
+
+			#fh {
+				/* 设置返回顶部功能固定在最底部 */
+				display: flex;
+				font-size: 5vw;
+				color: oldlace;
+				position: fixed;
+				bottom: 0;
+				right: 0;
+				z-index: 100;
+				/* 优秀限度最高 */
+
+			}
+
+			#fh ion-icon:hover {
+				/* 设置图标鼠标放置后变化 */
+				cursor: pointer;
+				color: oldlace;
+				filter: drop-shadow(0 0 5px);
+				font-size: 6vw;
+				transition: 0.5s;
+				transform: translateY(-10px);
+			}
+
+			#js {
+				position: absolute;
+				margin-top: 15vw;
+				right: 20vw;
+				letter-spacing: 1vw;
+				font-size: 5vw;
+				filter: drop-shadow(0 0 25px);
+				color: oldlace;
+				opacity: 0.8;
+			}
+
+			#d2 {
+				background-image: url(设计资源/04.jpg);
+				position: absolute;
+				top: 85vw;
+				width: 102vw;
+				height: 52vw;
+				overflow: hidden;
+			}
+
+			#boxq {
+				width: 7vw;
+				height: 7vw;
+				border: 0.3vw solid aliceblue;
+				border-radius: 50%;
+				margin-left: 78vw;
+				margin-top: 21vw;
+				transition: 0.5s;
+				cursor: pointer;
+				animation: animate1 2s linear infinite;
+			}
+
+			@keyframes animate1 {
+				0% {
+					transform: translatey(-3%);
+				}
+
+				50% {
+					transform: translatey(3%);
+				}
+
+				100%
+			}
+			}
+
+			#boxq:hover {
+				position: absolute;
+				width: 7vw;
+				height: 7vw;
+				border: 0.2vw solid aliceblue;
+				border-radius: 50%;
+				margin-left: 77.5vw;
+				margin-top: 21vw;
+				transform: scale(1.5);
+				transition: 0.5s;
+			}
+
+			#boxqjs {
+				visibility: hidden;
+				position: absolute;
+				background-image: url(设计资源/30.png);
+				background-size: 100% 100%;
+				width: 18vw;
+				height: 22vw;
+				left: 55vw;
+				top: 19vw;
+				transition: 0.5s;
+			}
+
+			#boxq2 {
+				position: absolute;
+				width: 7vw;
+				height: 7vw;
+				border: 0.3vw solid aliceblue;
+				border-radius: 50%;
+				margin-left: 57.5vw;
+				top: 39.5vw;
+				transition: 0.5s;
+				cursor: pointer;
+				animation: animate1 2s linear infinite;
+			}
+
+			@keyframes animate1 {
+				0% {
+					transform: translatey(-3%);
+				}
+
+				50% {
+					transform: translatey(3%);
+				}
+
+				100%
+			}
+
+			#boxqjs2 {
+				visibility: hidden;
+				position: absolute;
+				background-image: url(设计资源/31.png);
+				background-size: 100% 100%;
+				width: 18vw;
+				height: 25vw;
+				left: 35vw;
+				top: 35vw;
+				z-index: 999;
+				transition: 0.5s;
+			}
+
+			#d3 {
+				position: absolute;
+				top: 180vw;
+				width: 102vw;
+				height: 180vw;
+			}
+
+			#d3_1 {
+				position: absolute;
+				background-image: url(设计资源/33.jpg);
+				background-size: 100% 100%;
+				top: -7vw;
+				height: 55vw;
+				width: 100%;
+				overflow: hidden;
+			}
+
+			#d3_111 {
+				position: absolute;
+				background-image: url(设计资源/34.png);
+				background-size: 100%;
+				width: 3vw;
+				height: 3vw;
+				border-radius: 50%;
+				top: 7vw;
+				left: 70.5vw;
+				cursor: pointer;
+				animation: animate1 1s linear infinite;
+			}
+
+			@keyframes animate1 {
+				0% {
+					transform: translatey(-4%);
+				}
+
+				50% {
+					transform: translatey(4%);
+				}
+
+				100%
+			}
+
+			#d3_112 {
+				position: absolute;
+				background-image: url(设计资源/36.png);
+				background-size: 100% 100%;
+				height: 18vw;
+				width: 32vw;
+				top: 30vw;
+				left: 56vw;
+				border-radius: 4vw;
+				visibility: hidden;
+				transition: 0.8s;
+				overflow: hidden;
+			}
+
+			#d3_112 p {
+				position: relative;
+				font-size: 0.7vw;
+				top: 5vw;
+				left: 9vw;
+			}
+
+			#d3_121 {
+				position: absolute;
+				background-image: url(设计资源/37.png);
+				background-size: 100%;
+				width: 3vw;
+				height: 3vw;
+				border-radius: 50%;
+				top: 32vw;
+				left: 43.5vw;
+				cursor: pointer;
+				animation: animate1 1s linear infinite;
+			}
+
+			@keyframes animate1 {
+				0% {
+					transform: translatey(-4%);
+				}
+
+				50% {
+					transform: translatey(4%);
+				}
+
+				100%
+			}
+
+			#d3_122 {
+				position: absolute;
+				background-image: url(设计资源/38.png);
+				background-size: 100% 100%;
+				height: 18vw;
+				width: 33vw;
+				border-radius: 3vw;
+				top: 0vw;
+				left: 30vw;
+				visibility: hidden;
+				transition: 0.8s;
+				overflow: hidden;
+			}
+
+			#d3_122 p {
+				margin-top: 6vw;
+				margin-left: 1vw;
+				color: aliceblue;
+			}
+
+			#d3_131 {
+				position: absolute;
+				background-image: url(设计资源/39.png);
+				background-size: 100%;
+				width: 3vw;
+				height: 3vw;
+				border-radius: 50%;
+				top: 29vw;
+				left: 70vw;
+				cursor: pointer;
+				animation: animate1 1s linear infinite;
+			}
+
+			@keyframes animate1 {
+				0% {
+					transform: translatey(-4%);
+				}
+
+				50% {
+					transform: translatey(4%);
+				}
+
+				100%
+			}
+
+			#d3_132 {
+				position: absolute;
+				background-image: url(设计资源/40.png);
+				background-size: 100% 100%;
+				height: 18vw;
+				width: 34vw;
+				border-radius: 3vw;
+				top: 0vw;
+				left: 55vw;
+				visibility: hidden;
+				transition: 0.8s;
+				overflow: hidden;
+			}
+
+			#d3_132 p {
+				margin-top: 9vw;
+				margin-left: 18vw;
+				color: aliceblue;
+			}
+
+			#kc {
+				position: absolute;
+				margin-top: 52vw;
+				right: 30vw;
+				letter-spacing: 1vw;
+				font-size: 5vw;
+				filter: drop-shadow(0 0 25px);
+				color: oldlace;
+				opacity: 0.8;
+				font-family: 'Quicksand', sans-serif;
+			}
+
+			#d3_2 {
+				position: absolute;
+				background-image: url(设计资源/41.jpg);
+				background-size: 100% 100%;
+				top: 63vw;
+				height: 55vw;
+				width: 100%;
+				overflow: hidden;
+			}
+
+			#d3_211 {
+				position: absolute;
+				background-image: url(设计资源/42.png);
+				background-position: center;
+				background-size: 100%;
+				width: 6vw;
+				height: 6vw;
+				border-radius: 50%;
+				top: 29vw;
+				left: 50vw;
+				cursor: pointer;
+				transition: 0.8s;
+				z-index: 999;
+			}
+
+			#d3_221 {
+				position: absolute;
+				background-image: url(设计资源/44.png);
+				background-position: center;
+				background-size: 100% 100%;
+				width: 5vw;
+				height: 5vw;
+				top: 16vw;
+				left: 43vw;
+				transition: 1s;
+				overflow-x: hidden;
+				border-radius: 1vw;
+			}
+
+			#d3_221:hover {
+				transform-origin: 100% 100%;
+				transform: scale(4, 4);
+				transition: 1s;
+			}
+
+			#d3_221 #box {
+				position: absolute;
+				height: 2vw;
+				width: 100%;
+				background: gray;
+				opacity: 0.6;
+				box-shadow: 1vw 1.1vw 6vw -8vw gray;
+				top: -2vw;
+				overflow-x: hidden;
+				transition: 0.5s;
+
+			}
+
+			#d3_221 #box p {
+				position: absolute;
+				font-size: 1.5vw;
+				top: 0vw;
+				left: 0vw;
+				color: oldlace;
+				font-family: 'Quicksand', sans-serif;
+			}
+
+			#d3_211:hover {
+				transform: scale(1.3);
+				transition: 0.8s;
+			}
+
+			#d3_231 {
+				position: absolute;
+				background-image: url(设计资源/45.png);
+				background-position: center;
+				background-size: 100% 95%;
+				width: 8vw;
+				height: 5vw;
+				top: 31vw;
+				left: 69vw;
+				transition: 1s;
+				overflow-x: hidden;
+				border-radius: 1vw;
+			}
+
+			#d3_231:hover {
+				transform-origin: 0% 50%;
+				transform: scale(4, 4);
+				transition: 1s;
+			}
+
+			#d3_231 #box {
+				position: absolute;
+				height: 4.5vw;
+				width: 100%;
+				background: gray;
+				opacity: 0.6;
+				box-shadow: 1vw 1.1vw 6vw -8vw gray;
+				top: -8vw;
+				overflow-x: hidden;
+				transition: 0.5s;
+			}
+
+			#d3_231 #box p {
+				position: absolute;
+				font-size: 1.5vw;
+				top: 2vw;
+				left: 2vw;
+				color: oldlace;
+				font-family: 'Quicksand', sans-serif;
+			}
+
+			#d3_241 {
+				position: absolute;
+				background-image: url(设计资源/46.png);
+				background-position: center;
+				background-size: 100% 101%;
+				width: 6vw;
+				height: 6vw;
+				top: 5vw;
+				left: 60vw;
+				transition: 1s;
+				overflow-x: hidden;
+				border-radius: 1vw;
+			}
+
+			#d3_241 #box {
+				position: absolute;
+				height: 2.5vw;
+				width: 100%;
+				background: gray;
+				opacity: 0.6;
+				box-shadow: 1vw 1.1vw 6vw -8vw gray;
+				top: 0vw;
+				overflow-x: hidden;
+				transition: 0.5s;
+			}
+
+			#d3_241:hover {
+				transform-origin: 0% 0%;
+				transform: scale(3, 3);
+				transition: 1s;
+			}
+
+			#d3_241 #box p {
+				position: absolute;
+				font-size: 2vw;
+				top: 0vw;
+				left: 1vw;
+				color: oldlace;
+				font-family: 'Quicksand', sans-serif;
+			}
+			#d3_3{
+				position: absolute;
+				background-image: url(设计资源/47.jpg);
+				background-size: 100% 100%;
+				top: 132vw;
+				height: 55vw;
+				width: 100%;
+				overflow: hidden;
+			}
+
+			#lr {
+				position: absolute;
+				margin-top: 120vw;
+				right: 20vw;
+				letter-spacing: 1vw;
+				font-size: 7vw;
+				filter: drop-shadow(0 0 25px);
+				color: oldlace;
+				
+				font-family: 'Quicksand', sans-serif;
+			}
+
+			#x1 {
+				margin-top: 17vw;
+				margin-left: 48vw;
+				width: 11vw;
+				height: 10vw;
+				border-bottom: 0.3vw solid oldlace;
+				transform: rotate(60deg);
+			}
+
+			#x2 {
+				margin-top: -15vw;
+				margin-left: 40vw;
+				width: 25vw;
+				height: 10vw;
+				border-bottom: 0.3vw solid oldlace;
+				transform: rotate(285deg);
+			}
+
+			#x3 {
+				margin-top: 10vw;
+				margin-left: 50vw;
+				width: 25vw;
+				height: 10vw;
+				border-bottom: 0.3vw solid oldlace;
+				transform: rotate(185deg);
+			}
+
+			#s1 {
+				position: absolute;
+				font-size: 2vw;
+				padding-left: 25vw;
+				bottom: 40vw;
+			}
+
+			#s2 {
+				position: absolute;
+				font-size: 1vw;
+				padding-left: 20vw;
+				top: 14vw;
+				transition: 1s;
+			}
+
+			#s2:hover {
+				position: absolute;
+				font-size: 2vw;
+				padding-left: 20vw;
+				top: 14vw;
+				transition: 1s;
+			}
+
+			#js2 {
+				top: 137vw;
+				left: 14vw;
+				position: absolute;
+				display: flex;
+				font-size: 5vw;
+				filter: drop-shadow(0 0 25px);
+				color: oldlace;
+				font-family: 'Quicksand', sans-serif;
+			}
+
+			#js21 {
+				top: 145vw;
+				left: 65vw;
+				position: absolute;
+				display: flex;
+				font-size: 4vw;
+				filter: drop-shadow(0 0 25px);
+				color: oldlace;
+				font-family: 'Quicksand', sans-serif;
+			}
+
+
+
+			#js3 {
+				position: absolute;
+				top: 155vw;
+				background-color: rgb(240, 242, 245);
+				width: 102vw;
+				height: 25vw;
+			}
+
+			#s3 {
+				position: absolute;
+				font-size: 2.5vw;
+				padding-left: 37vw;
+				bottom: 18vw;
+			}
+
+			#s4 {
+				position: absolute;
+				font-size: 1vw;
+				padding-left: 35vw;
+				bottom: 10vw;
+			}
+
+			.sp1 {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				min-width: 50%;
+				min-height: 100%;
+				width: auto;
+				height: auto;
+				z-index: -100;
+				/* 设置重叠等级为最低	 */
+
+				transform: translateX(-50%) translateY(-52%);
+				transition: 0.5s opacity;
+			}
+
+			/* --------------开始设置图片文字 */
+			.dbt {
+				font-size: 1.2vw;
+			}
+
+			.xbt {
+				font-size: 1vw;
+			}
+
+
+
+			/* 图片文字构建完成 */
+			#d4 {
+				display: flex;
+				right: 0;
+				position: absolute;
+				background-color: rgba(255, 255, 255, 0.2);
+				width: 35vw;
+				height: 43vw;
+				top: 370vw;
+				border: 0.5vw solid rgba(0, 0, 0, 0.6);
+				box-shadow: 1vw 1vw 2vw -.5vw gray inset;
+			}
+
+			#sp5 {
+				position: absolute;
+				font-size: 1.5vw;
+				color: aliceblue;
+				letter-spacing: 1vw;
+				padding-top: 5vw;
+				
+			}
+
+			#js4 {
+				position: absolute;
+				top: 420vw;
+				right: 28vw;
+				letter-spacing: 1vw;
+				font-size: 5vw;
+				filter: drop-shadow(0 0 25px);
+				color: oldlace;
+			}
+
+			#box1 {
+				/* 设置box对每个选择框进行设计 */
+				transform-origin: center;
+				background-image: url(设计资源/01.jpg);
+				background-size: 100%;
+				background-repeat: no-repeat;
+				width: 50vw;
+				height: 10vw;
+				box-sizing: border-box;
+				border-radius: 5vw;
+				background-color: transparent;
+				background-color: darkblue;
+				background-position: center;
+				text-align: center;
+				line-height: 20vw;
+				font-size: 3vw;
+				box-shadow: .1vw .2vw 0.4vw 0.2vw gray;
+				opacity: 0.7;
+				transition: 1s;
+				overflow: hidden;
+				/* 将文字隐藏设置js鼠标放置时出现并移除时隐藏 */
+				cursor: ;
+				margin: 8vw;
+			}
+
+			#box2 {
+				transform-origin: center;
+				background-image: url(设计资源/07.jpg);
+				background-size: 100%;
+				background-repeat: no-repeat;
+				width: 50vw;
+				height: 10vw;
+				box-sizing: border-box;
+				border-radius: 5vw;
+				background-color: transparent;
+				background-color: darkblue;
+				background-position: center;
+				text-align: center;
+				line-height: 20vw;
+				font-size: 3vw;
+				box-shadow: .1vw .2vw 0.4vw 0.2vw gray;
+				opacity: 0.7;
+				transition: 1s;
+				overflow: hidden;
+				cursor: ;
+				margin: 8vw;
+			}
+
+			#box3 {
+				transform-origin: center;
+				background-image: url(设计资源/08.jpeg);
+				background-size: 100%;
+				background-repeat: no-repeat;
+				width: 50vw;
+				height: 10vw;
+				box-sizing: border-box;
+				border-radius: 5vw;
+				background-color: transparent;
+				background-color: darkblue;
+				background-position: center;
+				text-align: center;
+				line-height: 20vw;
+				font-size: 3vw;
+				box-shadow: .1vw .2vw 0.4vw 0.2vw gray;
+				opacity: 0.7;
+				transition: 1s;
+				overflow: hidden;
+				cursor: ;
+				margin: 8vw;
+			}
+
+			#box4 {
+				transform-origin: center;
+				background-image: url(设计资源/09.jpeg);
+				background-size: 100%;
+				background-repeat: no-repeat;
+				width: 50vw;
+				height: 10vw;
+				box-sizing: border-box;
+				border-radius: 5vw;
+				background-color: transparent;
+				background-color: darkblue;
+				background-position: center;
+				text-align: center;
+				line-height: 20vw;
+				font-size: 3vw;
+				box-shadow: .1vw .2vw 0.4vw 0.2vw gray;
+				opacity: 0.7;
+				transition: 1s;
+				overflow: hidden;
+				cursor: ;
+				margin: 8vw;
+			}
+
+			/* .box:hover{
+				transform: scale(1.3, 1);
+			} */
+
+			#box1 p {
+				position: relative;
+				right: 0vw;
+				top: 6vw;
+				letter-spacing: 1vw;
+				filter: drop-shadow(0 0 25px);
+				color: oldlace;
+				visibility: hidden;
+				transition: 1s;
+
+			}
+
+			#box2 p {
+				position: relative;
+				right: 0vw;
+				top: 6vw;
+				letter-spacing: 1vw;
+				filter: drop-shadow(0 0 25px);
+				color: burlywood;
+				visibility: hidden;
+				transition: 1s;
+
+			}
+
+			#box3 p {
+				position: relative;
+				right: 0vw;
+				top: 6vw;
+				letter-spacing: 1vw;
+				filter: drop-shadow(0 0 25px);
+				color: oldlace;
+				visibility: hidden;
+				transition: 1s;
+
+			}
+
+			#box4 p {
+				position: relative;
+				right: 0vw;
+				top: 6vw;
+				letter-spacing: 1vw;
+				filter: drop-shadow(0 0 25px);
+				color: darkslategray;
+				visibility: hidden;
+				transition: 1s;
+
+			}
+
+			#xzk {
+				position: absolute;
+				top: 425vw;
+				left: 50%;
+				padding-top: 7vw;
+				width: 100%;
+				transform: translateX(-50%);
+
+			}
+
+			a {
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="auv">
+			<ul>
+				<li><a href="内容3.html">
+						<ion-icon name="home-outline"></ion-icon>
+					</a></li>
+				<li><a href="#">
+						<ion-icon name="apps-outline"></ion-icon>
+					</a></li>
+				<li><a href="https://github.com/">
+						<ion-icon name="logo-github"></ion-icon>
+					</a></li>
+				<li><a href="登录.html">
+						<ion-icon name="log-in-outline"></ion-icon>
+					</a></li>
+				<li><a href="注册.html">
+						<ion-icon name="person-add-outline"></ion-icon>
+					</a></li>
+			</ul>
+		</div>
+		<!-- 导航按钮框设计步骤 -->
+		<p id="js">不简单的设计<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;打造理想生活</p>
+		<video autoplay muted loop class="sp1">
+			<source src="设计资源/sp1.mp4" type="video/mp4" />
+
+		</video>
+
+		<div id="fh">
+			<ion-icon name="chevron-up-outline"></ion-icon>
+		</div>
+		<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+		<script type="text/javascript">
+			let oDiv = document.getElementById("fh")
+			let btNews
+
+			oDiv.onclick = function() {
+				clearInterval(btNews)
+
+				btNews = setInterval(function() {
+					if (document.documentElement.scrollTop == 0) {
+						clearInterval(btNews)
+					} else {
+						let speed = document.documentElement.scrollTop / 8
+						document.documentElement.scrollTop = document.documentElement.scrollTop - speed
+					}
+				}, 20)
+			}
+		</script>
+		<div id="d2">
+			<a href="https://item.jd.com/10065673728882.html">
+				<div id="boxq">
+				</div>
+			</a>
+			<div id="boxqjs">
+			</div>
+			<div id="boxq2"></div>
+			<div id="boxqjs2">
+			</div>
+			<span id="s1">全屋无线智能家居系统</span>
+			<span id="s2">智慧家居通过物联网、云计算、语音识别、人工智能技术，连接家庭电工产品、<br>暖通舒适设备、居家安全和影音等系统，构建互联互通的家庭物联网，为全球亿万<br>住户
+				打造智慧美好生活。</span>
+		</div>
+		<p id="js2">why we chose?</p>
+		<p id="js21">Power System</p>
+		<div id="js3">
+			<span id="s3">强大的全屋智能家居控制系统</span>
+			<span
+				id="s4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;智慧家居满足家居环境多空间、多用户交互需求，<br><br>
+				不同用户可以根据自身需要和生活习惯配置相应的场景，打造私人专属的智慧生活。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				从此告别千篇一律，乐享智慧生活！</span>
+		</div>
+
+
+		<!-- ----------- -->
+
+
+
+
+
+		<div id="d3">
+			<div id="d3_1">
+				<a href="https://beijing.unisiot.com/index/product/dimmer_switch_e">
+					<div id="d3_111"></div>
+				</a>
+				<div id="d3_112">
+					<p>智能光环境控制，1600种色彩自由调节</p>
+				</div>
+
+				<a href="https://beijing.unisiot.com/index/product/infrared_home_appliance_controller">
+					<div id="d3_121"></div>
+				</a>
+				<div id="d3_122">
+					<p>家电控制系统<br>WiFi控制，让老家电也能“学聪明”</p>
+				</div>
+
+				<a href="https://beijing.unisiot.com/index/product/smart_door_magnetism">
+					<div id="d3_131"></div>
+				</a>
+				<div id="d3_132">
+					<p>红外体温监测，可疑行为即刻知晓</p>
+				</div>
+			</div> <!-- d31 -->
+
+			<span id="kc">Kitchen Safe</span>
+
+			<div id="d3_2">
+
+				<div id="d3_211">
+				</div>
+				<div id="x1"></div>
+				<div id="x2"></div>
+				<div id="x3"></div>
+
+				<div id="d3_221">
+					<div id="box">
+						<p>reliable</p>
+					</div>
+				</div>
+				<div id="d3_231">
+					<div id="box">
+						<p>save</p>
+					</div>
+				</div>
+
+				<div id="d3_241">
+					<div id="box">
+						<p>safe</p>
+					</div>
+				</div>
+			</div> <!--                d32 -->
+			<span id="lr">convenient Life</span>
+			<div id="d3_3"></div>
+
+
+
+
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div id="d4">
+			<p id="sp5">
+				&nbsp;&nbsp;超级智慧家系统采用业界先进的ZigBee无线通信技术，组建家庭物联网，将与家居生活有关的各个子系统有机结合；通过网络化综合智能控制和管理，实现智慧生活全场景覆盖；兼顾语音交互、定时开启、场景联动、远程管理、信息反馈。
+			</p>
+		</div>
+		<p id="js4">您想了解的是</p>
+		<div id="xzk">
+			<div id="box1">
+				<a href="影院系统.html">
+					<p>影院系统</p>
+				</a>
+			</div>
+			<div id="box2">
+				<a href="舒心卧室.html">
+					<p>舒心卧室</p>
+				</a>
+			</div>
+			<div id="box3">
+				<a href="安全厨房.html">
+					<p>安全厨房</p>
+				</a>
+			</div>
+			<div id="box4">
+				<a href="趣味客厅.html">
+					<p>趣味客厅</p>
+				</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			let $ = document.querySelectorAll.bind(document)
+			$("#box1")[0].onmouseover = function() {
+				$("#box1")[0].style.cursor = "pointer"
+				$("#box1")[0].style.width = "67vw"
+				$("#box1")[0].style.height = "14vw"
+				$("#box1 p")[0].style.visibility = "visible"
+				$("#box1 p")[0].style.top = "-4vw"
+				$("#box1")[0].style.opacity = "1"
+			}
+
+			$("#box1")[0].onmouseout = function() {
+				$("#box1")[0].style.width = "50vw"
+				$("#box1")[0].style.height = "10vw"
+				$("#box1 p")[0].style.top = "4vw"
+				$("#box1 p")[0].style.visibility = "hidden"
+				$("#box1")[0].style.opacity = "0.7"
+			}
+			$("#box2")[0].onmouseover = function() {
+				$("#box2")[0].style.cursor = "pointer"
+				$("#box2")[0].style.width = "67vw"
+				$("#box2")[0].style.height = "14vw"
+				$("#box2 p")[0].style.visibility = "visible"
+				$("#box2 p")[0].style.top = "-4vw"
+				$("#box2")[0].style.opacity = "1"
+			}
+
+			$("#box2")[0].onmouseout = function() {
+				$("#box2")[0].style.width = "50vw"
+				$("#box2")[0].style.height = "10vw"
+				$("#box2 p")[0].style.top = "4vw"
+				$("#box2 p")[0].style.visibility = "hidden"
+				$("#box2")[0].style.opacity = "0.7"
+			}
+			$("#box3")[0].onmouseover = function() {
+				$("#box3")[0].style.cursor = "pointer"
+				$("#box3")[0].style.width = "67vw"
+				$("#box3")[0].style.height = "14vw"
+				$("#box3 p")[0].style.visibility = "visible"
+				$("#box3 p")[0].style.top = "-4vw"
+				$("#box3")[0].style.opacity = "1"
+			}
+
+			$("#box3")[0].onmouseout = function() {
+				$("#box3")[0].style.width = "50vw"
+				$("#box3")[0].style.height = "10vw"
+				$("#box3 p")[0].style.top = "4vw"
+				$("#box3 p")[0].style.visibility = "hidden"
+				$("#box3")[0].style.opacity = "0.7"
+			}
+			$("#box4")[0].onmouseover = function() {
+				$("#box4")[0].style.cursor = "pointer"
+				$("#box4")[0].style.width = "67vw"
+				$("#box4")[0].style.height = "14vw"
+				$("#box4 p")[0].style.visibility = "visible"
+				$("#box4 p")[0].style.top = "-4vw"
+				$("#box4")[0].style.opacity = "1"
+			}
+
+			$("#box4")[0].onmouseout = function() {
+				$("#box4")[0].style.width = "50vw"
+				$("#box4")[0].style.height = "10vw"
+				$("#box4 p")[0].style.top = "4vw"
+				$("#box4 p")[0].style.visibility = "hidden"
+				$("#box4")[0].style.opacity = "0.7"
+			}
+			// 设置所有遍历
+
+
+			$("#boxq")[0].onmouseover = function() {
+				$("#boxqjs")[0].style.visibility = "visible";
+				$("#boxqjs")[0].style.left = "45vw"
+			}
+			$("#boxq")[0].onmouseout = function() {
+				$("#boxqjs")[0].style.visibility = "hidden";
+				$("#boxqjs")[0].style.left = "55vw"
+			}
+
+			$("#boxq2")[0].onmouseover = function() {
+				$("#boxqjs2")[0].style.visibility = "visible";
+				$("#boxqjs2")[0].style.top = "20vw"
+			}
+			$("#boxq2")[0].onmouseout = function() {
+				$("#boxqjs2")[0].style.visibility = "hidden";
+				$("#boxqjs2")[0].style.top = "65vw"
+			}
+
+			$("#d3_111")[0].onmouseover = function() {
+				$("#d3_112")[0].style.visibility = "visible"
+				$("#d3_112")[0].style.top = "11vw"
+			}
+			$("#d3_111")[0].onmouseout = function() {
+				$("#d3_112")[0].style.visibility = "hidden"
+				$("#d3_112")[0].style.top = "70vw"
+			}
+			$("#d3_121")[0].onmouseover = function() {
+				$("#d3_122")[0].style.visibility = "visible"
+				$("#d3_122")[0].style.top = "10vw"
+			}
+			$("#d3_121")[0].onmouseout = function() {
+				$("#d3_122")[0].style.visibility = "hidden"
+				$("#d3_122")[0].style.top = "-20vw"
+			}
+			$("#d3_131")[0].onmouseover = function() {
+				$("#d3_132")[0].style.visibility = "visible"
+				$("#d3_132")[0].style.top = "10vw"
+			}
+			$("#d3_131")[0].onmouseout = function() {
+				$("#d3_132")[0].style.visibility = "hidden"
+				$("#d3_132")[0].style.top = "-20vw"
+			}
+			$("#d3_221")[0].onmouseover = function() {
+				$("#d3_221 #box")[0].style.top = "0vw"
+			}
+			$("#d3_221")[0].onmouseout = function() {
+				$("#d3_221 #box")[0].style.top = "-2vw"
+			}
+			$("#d3_231")[0].onmouseover = function() {
+				$("#d3_231 #box")[0].style.top = "-2vw"
+			}
+			$("#d3_231")[0].onmouseout = function() {
+				$("#d3_231 #box")[0].style.top = "-8vw"
+			}
+			$("#d3_241")[0].onmouseover = function() {
+				$("#d3_241 #box")[0].style.top = "0vw"
+			}
+			$("#d3_241")[0].onmouseout = function() {
+				$("#d3_241 #box")[0].style.top = "-8vw"
+			}
+		</script>
+	</body>
+</html>
